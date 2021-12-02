@@ -1,6 +1,6 @@
 # README
 
-#usersテーブル
+# usersテーブル
 
 |        column      |   type   |         option          |
 |--------------------|----------|------------------------ |
@@ -13,12 +13,12 @@
 | last_name_kana     |  string  | null:false              |
 | birth_day           |   date   | null:false              |
 
-##Association
--has_many :items
--has_many :orders
--has_many :comments
+## Association
+-has_many :items  
+-has_many :orders  
+-has_many :comments  
 
-#itemsテーブル
+# itemsテーブル
 
 |          column         |     type     |            option            |
 |-------------------------|--------------|------------------------------|
@@ -31,11 +31,11 @@
 | shipping_days           |     date     | null:false                   |
 | price                   |    integer   | null:false                   |
 
-##Association
--belongs_to :user
--has_one :order
--has_many :comments
--has_one_attached :image
+## Association
+-belongs_to :user  
+-has_one :order  
+-has_many :comments  
+-has_one_attached :image  
 
 #ordersテーブル
 
@@ -50,9 +50,9 @@
 | building_name           |    string    |                              |
 | phone_number            |    integer   | null:false                   |
 
-##Association
--belongs_to :user
--belongs_to :items
+## Association
+-belongs_to :user  
+-belongs_to :items  
 
 #commentsテーブル
 
@@ -62,9 +62,9 @@
 | item                    |  references  | null:false foreign_key: tru  |
 | comments                |    text      | null:false                   |
 
-##Association
--belongs_to :user
--belongs_to :items
+## Association
+-belongs_to :user  
+-belongs_to :items  
 
 #imagesテーブル
 
@@ -73,7 +73,7 @@
 | image                   |  string      | null:false                   |
 | item                    |  references  | null:false foreign_key: tru  |
 
-##Association
+## Association
 -belongs_to :items
 
 
