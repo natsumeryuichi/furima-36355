@@ -11,14 +11,14 @@
 | last_name          |  string  | null:false              |
 | first_name_kana    |  string  | null:false              |
 | last_name_kana     |  string  | null:false              |
-| birth_day           |   date   | null:false              |
+| birth_day          |   date   | null:false              |
 
 ## Association
 -has_many :items  
--has_many :orders  
--has_many :comments  
+-has_one :order  
+-has_many :purchase_managements  
 
-# itemsテーブル
+# itemsテーブル "商品出品機能"
 
 |          column         |     type     |            option            |
 |-------------------------|--------------|------------------------------|
@@ -27,53 +27,51 @@
 | category                |    string    | null:false                   |
 | condition               |    string    | null:false                   |
 | shipping_charge         |    string    | null:false                   |
-| shipping_from           |    string    | null:false                   |
+| prefectures             |   integer    | null:false foreign_key: true |
 | shipping_days           |     date     | null:false                   |
 | price                   |    integer   | null:false                   |
 
 ## Association
 -belongs_to :user  
--has_one :order  
--has_many :comments  
--has_one_attached :image  
+-has_one :purchase_management  
+-belongs_to_active_hash :prefectures
+<!-- -has_many :comments   -->
 
-#ordersテーブル
+#　ordersテーブル "商品購入機能"
 
 |          column         |     type     |            option            |
 |-------------------------|--------------|------------------------------|
-| user                    |  references  | null:false foreign_key: true |
-| item                    |  references  | null:false foreign_key: tru  |
-| postal_code             |    integer   | null:false                   |
-| prefecture              |    string    | null:false                   |
+| postal_code             |   integer    | null:false                   |
+| prefectures             |   integer    | null:false foreign_key: true |
 | city                    |    string    | null:false                   |
 | address                 |    string    | null:false                   |
 | building_name           |    string    |                              |
-| phone_number            |    integer   | null:false                   |
+| phone_number            |   integer    | null:false                   |
+| purchase_management     |   integer    | null:false foreign_key: true |
 
-## Association
--belongs_to :user  
--belongs_to :items  
 
-#commentsテーブル
+## Association  
+-has_one_active_hash :prefectures  
+-has_one :purchase_management  
+<!-- -belongs_to :item   -->
+
+# purchase_managementsテーブル "購入管理機能"
 
 |          column         |     type     |            option            |
 |-------------------------|--------------|------------------------------|
 | user                    |  references  | null:false foreign_key: true |
-| item                    |  references  | null:false foreign_key: tru  |
-| comments                |    text      | null:false                   |
+| item                    |  references  | null:false foreign_key: true |
+| order                   |  references  | null:false foreign_key: true |
 
-## Association
+## Association  
+-belongs_to :user 
+-belongs_to :item  
+-belongs_to :order
+
+
+<!-- ## Association
 -belongs_to :user  
--belongs_to :items  
+-belongs_to :items   -->
 
-#imagesテーブル
-
-|          column         |     type     |            option            |
-|-------------------------|--------------|------------------------------|
-| image                   |  string      | null:false                   |
-| item                    |  references  | null:false foreign_key: tru  |
-
-## Association
--belongs_to :items
 
 
