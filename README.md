@@ -1,24 +1,68 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# usersテーブル　　
 
-Things you may want to cover:
+|        column      |   type   |         option          |
+|--------------------|----------|------------------------ |
+| email              |  string  | null:false unique:true  |
+| encrypted_password |  string  | null:false              |
+| nickname           |  string  | null:false              |
+| first_name         |  string  | null:false              |
+| last_name          |  string  | null:false              |
+| first_name_kana    |  string  | null:false              |
+| last_name_kana     |  string  | null:false              |
+| birth_day          |   date   | null:false              |
 
-* Ruby version
+## Association
+-has_many :items  
+-has_many :purchase_managements  
 
-* System dependencies
+# itemsテーブル "商品出品機能"
 
-* Configuration
+|          column         |     type     |            option            |
+|-------------------------|--------------|------------------------------|
+| user                    |  references  | null:false foreign_key: true |
+| title                   |    string    | null:false                   |
+| explanation             |     text     | null:false                   |
+| category_id             |    integer   | null:false                   |
+| condition_id            |    integer   | null:false                   |
+| shipping_charge_id      |    integer   | null:false                   |
+| prefecture_id           |    integer   | null:false                   |
+| shipping_day_id         |    integer   | null:false                   |
+| price                   |    integer   | null:false                   |
 
-* Database creation
+## Association
+-belongs_to :user  
+-has_one :purchase_management  
 
-* Database initialization
+#　ordersテーブル "配送先"
 
-* How to run the test suite
+|          column         |     type     |            option            |
+|-------------------------|--------------|------------------------------|
+| postal_code             |    string    | null:false                   |
+| prefecture_id           |    integer   | null:false                   |
+| city                    |    string    | null:false                   |
+| address                 |    string    | null:false                   |
+| building_name           |    string    |                              |
+| phone_number            |    string    | null:false                   |
+| purchase_management     |  references  | null:false foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Association  
+-belongs_to :purchase_management  
 
-* ...
+# purchase_managementsテーブル "購入管理機能"
+
+|          column         |     type     |            option            |
+|-------------------------|--------------|------------------------------|
+| user                    |  references  | null:false foreign_key: true |
+| item                    |  references  | null:false foreign_key: true |
+
+## Association  
+-belongs_to :user 
+-belongs_to :item  
+-has_one :order
+
+
+
+
