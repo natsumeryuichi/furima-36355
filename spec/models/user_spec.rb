@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
       it 'paswordが空では登録できないこと' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank", "Password confirmation doesn't match Password", "Password は半角英数で入力して下さい")
+        expect(@user.errors.full_messages).to include("Password can't be blank")
       end
 
       it 'paswordが文字数５文字では登録できないこと' do
