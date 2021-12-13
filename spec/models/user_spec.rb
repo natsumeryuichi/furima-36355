@@ -37,31 +37,31 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email is invalid")
       end
 
-      it 'paswordが空では登録できないこと' do
+      it 'passwordが空では登録できないこと' do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
 
-      it 'paswordが文字数５文字では登録できないこと' do
+      it 'passwordが文字数５文字では登録できないこと' do
         @user.password = Faker::Lorem.characters(number: 5, min_alpha: 1, min_numeric: 1) 
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
 
-      it 'paswordが半角アルファベットでは登録できないこと' do
+      it 'passwordが半角アルファベットでは登録できないこと' do
         @user.password = Faker::Lorem.characters(number: 6, min_alpha: 6) 
         @user.valid?
         expect(@user.errors.full_messages).to include("Password は半角英数で入力して下さい")
       end
 
-      it 'paswordが数字のみでは登録できないこと' do
+      it 'passwordが数字のみでは登録できないこと' do
         @user.password = Faker::Lorem.characters(number: 6, min_numeric:6) 
         @user.valid?
         expect(@user.errors.full_messages).to include("Password は半角英数で入力して下さい")
       end
 
-      it 'paswordが全角英数のみでは登録できないこと' do
+      it 'passwordが全角英数のみでは登録できないこと' do
         password_zen = Faker::Lorem.characters(number: 1, min_numeric:1) 
         require 'nkf'
         password_zen.tr("A-Z0-9","Ａ-Ｚ０-９")
@@ -70,10 +70,10 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password は半角英数で入力して下さい")
       end
 
-      it 'pasword_confirmationが空では登録できないこと' do
+      it 'password_confirmationが空では登録できないこと' do
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation は半角英数で入力して下さい")
+        expect(@user.errors.full_messages).to include("Password confirmation can't be blank")
       end
 
       it 'passworとpasword_confirmationが一致しないと登録できないこと' do
@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      it 'pasword_confirmationが文字数５文字では登録できないこと' do
+      it 'password_confirmationが文字数５文字では登録できないこと' do
         @user.password_confirmation = Faker::Lorem.characters(number: 5, min_alpha: 1, min_numeric: 1) 
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
