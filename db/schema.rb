@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(version: 2021_12_13_142137) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.string "string", null: false
+    t.string "title", null: false
     t.text "explanation", null: false
-    t.integer "category", null: false
-    t.integer "condition", null: false
-    t.integer "shipping_charge", null: false
-    t.integer "prefecture", null: false
-    t.integer "shipping_day", null: false
+    t.integer "category_id", null: false
+    t.integer "condition_id", null: false
+    t.integer "shipping_charge_id", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "shipping_day_id", null: false
     t.integer "price", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
   end
