@@ -12,6 +12,12 @@ RSpec.describe Item, type: :model do
     end
 
     context '出品できない場合' do
+      it 'userが紐づかれていなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
+
       it 'imageが空では保存できないこと' do
       @item.image = nil
         @item.valid?
@@ -31,13 +37,26 @@ RSpec.describe Item, type: :model do
       end
 
       it 'category_idが空では登録できないこと' do
-        @item.category_id = ''
-          @item.valid?
-          expect(@item.errors.full_messages).to include("Category can't be blank")
+         @item.category_id = ''
+         @item.valid?
+         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+
+      it 'カテゴリーに---が選択されている場合は出品できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+
 
       it 'condition_idが空では保存できないこと' do
         @item.condition_id = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end
+
+      it '商品状態に---が選択されている場合は出品できない' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
@@ -48,14 +67,32 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
+      it '発送元地域に---が選択されている場合は出品できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
       it 'shipping_charge_idが空では保存できないこと' do
         @item.shipping_charge_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
       end
 
+      it '配送手数料に---が選択されている場合は出品できない' do
+        @item.shipping_charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
+      end
+
       it 'shipping_day_idが空では保存できないこと' do
         @item.shipping_day_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+      end
+
+      it '配送までの日数に---が選択されている場合は出品できない' do
+        @item.shipping_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
