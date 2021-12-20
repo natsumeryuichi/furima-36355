@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index ,:new, :create]
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :diffrent_user, only: [:edit, :update]
+  before_action :diffrent_user, only: [:edit, :update, :destroy]
 
     def index
     @items = Item.all.order(created_at: :desc)
@@ -33,6 +33,11 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    if @item.destroy
+      redirect_to root_path
+    end
 
   def diffrent_user
    item = Item.find(params[:id])
