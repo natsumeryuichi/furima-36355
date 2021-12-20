@@ -28,8 +28,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.update(items_params)
+    @item = Item.find(params[:id])
+    if @item.update(items_params)
       redirect_to root_path
     else
       render :edit
@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
   end
 
   def diffrent_user
-  item = @item = Item.find(params[:id])
+  item = item = Item.find(params[:id])
   unless item.user_id == current_user.id
     redirect_to action: :index
   end
