@@ -12,7 +12,7 @@
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-      <%# <% end %> %>
+      <%# <% end %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
@@ -29,7 +29,7 @@
     <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
     <%# 商品が売れていない場合はこちらを表示しましょう %>
   <% else %>
-    <%= link_to "購入画面に進む", orders_path, method: :get ,class:"item-red-btn"%>
+    <%= link_to "購入画面に進む", orders_path(@item.id), method: :get ,class:"item-red-btn"%>
     <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
 
