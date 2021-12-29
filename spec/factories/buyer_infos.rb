@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :order do
+  factory :buyer_info do
     postal_code {"111-1111"}
     prefecture_id {Faker::Number.between(from: 2, to: 48)}
     city {"埼玉県"}
