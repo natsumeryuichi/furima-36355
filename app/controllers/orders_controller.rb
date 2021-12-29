@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
-    @buyer_info = BuyerInfo.new
+    @buyerinfo = BuyerInfo.new
   end
 
   def new
@@ -9,9 +9,9 @@ class OrdersController < ApplicationController
 
   def create
        @item = Item.find(params[:item_id])
-       @buyer_info = BuyerInfo.new(buyer_params)
-    if @buyer_info.valid?
-      @buyer_info.save
+       @buyerinfo = BuyerInfo.new(buyer_params)
+    if @buyerinfo.valid?
+      @buyerinfo.save
       redirect_to root_path
     else
       render :index
