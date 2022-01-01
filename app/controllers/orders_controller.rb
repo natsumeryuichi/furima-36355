@@ -2,6 +2,15 @@ class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @buyerinfo = BuyerInfo.new
+    if user_signed_in? && @item.purchase_management.present?
+      redirect_to root_path
+    else
+      authenticate_user!
+    end
+
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
   end
 
   def new
@@ -26,7 +35,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item.price,
         card: buyer_params[:token],
