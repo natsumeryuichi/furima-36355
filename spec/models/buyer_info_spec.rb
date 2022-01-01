@@ -8,12 +8,18 @@ RSpec.describe BuyerInfo, type: :model do
   end
   
   context '新規登録できる場合' do
-    it 'postal_code, prefecture_id, city, address, building_name, phone_numberの値が存在すれば登録できること' do
+    it 'token, postal_code, prefecture_id, city, address, building_name, phone_numberの値が存在すれば登録できること' do
       expect(@buyer_info).to be_valid
     end
   end
 
   context '新規登録できない場合' do
+    it 'tokenが空では保存できない' do
+      @buyer_info.token = ''
+      @buyer_info.valid?
+      expect(@buyer_info.errors.full_messages).to include("Token can't be blank")
+    end
+
     it '郵便番号が必須であること' do
       @buyer_info.postal_code = ''
       @buyer_info.valid?
