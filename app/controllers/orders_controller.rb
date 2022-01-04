@@ -1,16 +1,11 @@
 class OrdersController < ApplicationController
 
+  before_action :authenticate_user!, only:[:index]
   before_action :set_item, only:[:index,:create]
 
   def index
     @buyerinfo = BuyerInfo.new
-    if user_signed_in? && @item.purchase_management.present?
-      redirect_to root_path
-    else
-      authenticate_user!
-    end
-
-    if current_user.id == @item.user_id
+    if  @item.purchase_management.present? 
       redirect_to root_path
     end
   end
