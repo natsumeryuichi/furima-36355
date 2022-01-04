@@ -13,6 +13,7 @@ RSpec.describe BuyerInfo, type: :model do
     end
 
     it '建物名が空欄でも登録できること' do
+      @buyer_info.building_name = ''
       expect(@buyer_info).to be_valid
     end
   end
