@@ -8,7 +8,8 @@
     validates :city, presence: true
     validates :address, presence: true
     validates :phone_number, presence: true, length: {minimum: 10, maximum: 11}, numericality: { only_integer: true}
-    validates :user_id, presence: true  
+    validates :user_id, presence: true
+    validates :item_id, presence: true
     validates :token, presence: true
 
     def save
