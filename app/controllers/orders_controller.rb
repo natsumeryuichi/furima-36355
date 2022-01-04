@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+
+  before_action :set_item, only:[:index,:create]
+
   def index
-    @item = Item.find(params[:item_id])
     @buyerinfo = BuyerInfo.new
     if user_signed_in? && @item.purchase_management.present?
       redirect_to root_path
@@ -17,7 +19,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-       @item = Item.find(params[:item_id])
        @buyerinfo = BuyerInfo.new(buyer_params)
     if @buyerinfo.valid?
       pay_item
@@ -41,6 +42,10 @@ class OrdersController < ApplicationController
         card: buyer_params[:token],
         currency: 'jpy'
       )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
 end
