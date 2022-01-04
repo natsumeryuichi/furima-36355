@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     @buyerinfo = BuyerInfo.new
     if  @item.purchase_management.present?
       redirect_to root_path
-    elsif current_user.id == @item_use_id
+    elsif current_user.id == @item.user_id
       redirect_to root_path
     end
   end
