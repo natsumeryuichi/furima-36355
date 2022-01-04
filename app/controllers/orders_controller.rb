@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
 
   def index
     @buyerinfo = BuyerInfo.new
-    if  @item.purchase_management.present? 
+    if  @item.purchase_management.present?
+      redirect_to root_path
+    elsif current_user.id == @item_use_id
       redirect_to root_path
     end
   end
