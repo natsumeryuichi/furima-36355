@@ -11,6 +11,10 @@ RSpec.describe BuyerInfo, type: :model do
     it 'token, postal_code, prefecture_id, city, address, building_name, phone_numberの値が存在すれば登録できること' do
       expect(@buyer_info).to be_valid
     end
+
+    it '建物名が空欄でも登録できること' do
+      expect(@buyer_info).to be_valid
+    end
   end
 
   context '新規登録できない場合' do
@@ -34,6 +38,12 @@ RSpec.describe BuyerInfo, type: :model do
 
     it '都道府県が必須であること' do
       @buyer_info.prefecture_id = ''
+      @buyer_info.valid?
+      expect(@buyer_info.errors.full_messages).to include("Prefecture can't be blank")
+    end
+
+    it '都道府県に「---」 が選択されている場合は登録できないこと' do
+      @buyer_info.prefecture_id = 1
       @buyer_info.valid?
       expect(@buyer_info.errors.full_messages).to include("Prefecture can't be blank")
     end
@@ -72,6 +82,18 @@ RSpec.describe BuyerInfo, type: :model do
       @buyer_info.phone_number = '０９０１２３４５６７８'
       @buyer_info.valid?
       expect(@buyer_info.errors.full_messages).to include("Phone number is not a number")
+    end
+
+    it 'userが紐づいていなければ登録できない' do
+      @buyer_info.user_id = nil
+      @buyer_info.valid?
+      expect(@buyer_info.errors.full_messages).to include("User can't be blank")
+    end
+
+    it 'itemが紐づいてなければ登録できない' do
+      @buyer_info.item_id = nil
+      @buyer_info.valid?
+      expect(@buyer_info.errors.full_messages).to include("Item can't be blank")
     end
   end
 end
