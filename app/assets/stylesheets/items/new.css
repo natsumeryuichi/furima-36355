@@ -80,6 +80,15 @@
   padding: 2vh 0;
 }
 
+.image-delete-button {
+  text-align: center;
+  margin: 0 auto;
+  border: solid 1px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  width: 10vw;
+}
+
 .click-upload {
   margin: 15px 0;
   min-width: 250px;

@@ -31,6 +31,7 @@
   min-height: 500px;
   background-color: rgb(205, 202, 202);
   object-fit: contain;
+  margin: 0 auto;
 }
 
 .item-price-box {
@@ -204,4 +205,16 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 23px;
+}
+
+.other-images {
+  display: flex;
+}
+
+.other-image {
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-around;
+  height: 20vh;
+  width: 20vh;
 }
