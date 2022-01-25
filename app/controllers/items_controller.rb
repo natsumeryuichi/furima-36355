@@ -21,7 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-  end
+    @comments = @item.comments.includes(:user)
+    @comment = Comment.new
+    end
 
   def edit
     if @item.purchase_management.present?
