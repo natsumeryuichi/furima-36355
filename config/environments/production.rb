@@ -3,6 +3,10 @@ Rails.application.configure do
   ActionCable.server.config.disable_request_forgery_protection = true
   config.action_cable.url = "wss://furima-36355.herokuapp.com/cable" 
   config.action_cable.allowed_request_origins = ['https://furima-36355.herokuapp.com', 'http://furima-36355.herokuapp.com']
+
+  ActionCable.server.config.disable_request_forgery_protection = true
+  config.action_cable.url = "ws://【Elastic IP】/cable" 
+  config.action_cable.allowed_request_origins = ['http://【Elastic IP】']
   # Code is not reloaded between requests.
   config.cache_classes = true
 
