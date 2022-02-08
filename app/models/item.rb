@@ -11,8 +11,8 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_many_attached :images
-  has_many :comments
   has_one :purchase_management
+  has_many :comments
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :category

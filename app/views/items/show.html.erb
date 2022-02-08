@@ -84,19 +84,10 @@
   </div>
 
   <div class="comment-box">
-    <form>
-    <div id="comments">
-        <h4>＜コメント一覧＞</h4>
-       <% @item.comments.each do |comment| %>
-         <div class="comment">
-           <p class="user-info"><%= comment.user.nickname %> </p>
-           <p><%= comment.text%></p>
-         </div>
-       <% end %>
-       </div>
+        <div id="comments">
        <br>
       <% if user_signed_in? %>
-        <%= form_with model: [@item ,@comment], url: item_comments_path(@item), method: :post, id: "comment-form" do |f| %>
+        <%= form_with model: [@item,@comment], id: "comment-form" do |f| %>
           <%= f.text_area :text , class: "comment-text"%>
           <p class="comment-warn">
             相手のことを考え丁寧なコメントを心がけましょう。
@@ -107,7 +98,14 @@
           <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <%end%>
       <%end%>
-   </form>
+        <h4>＜コメント一覧＞</h4>
+       <% @item.comments.each do |comment| %>
+         <div class="comment">
+           <p class="user-info"><%= comment.user.nickname %>: </p>
+           <p><%= comment.text %></p>
+         </div>
+         <% end %>
+       </div>
  </div>
   <div class="links">
     <a href="#" class="change-item-btn">
