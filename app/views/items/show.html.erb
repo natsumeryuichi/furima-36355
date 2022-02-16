@@ -84,8 +84,6 @@
   </div>
 
   <div class="comment-box">
-        <div id="comments">
-       <br>
       <% if user_signed_in? %>
         <%= form_with model: [@item,@comment], id: "comment-form" do |f| %>
           <%= f.text_area :text , class: "comment-text"%>
@@ -98,6 +96,7 @@
           <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <%end%>
       <%end%>
+      <div id="comments">
         <h4>＜コメント一覧＞</h4>
        <% @item.comments.each do |comment| %>
          <div class="comment">
