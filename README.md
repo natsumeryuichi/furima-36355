@@ -64,7 +64,12 @@
 -has_one :order
 
 # commentsテーブル
-|  colum  |   type  |  option  |
+|  column |   type  |  option  |
 |  text   |   text  |          |
 | user_id | integer |          |
 | item_id | integer |          |
+
+# Relationshipsテーブル
+| column |     type   |                option                |
+|  user  | references | foreign_key: true                    |
+| follow | references | foreign_ket: true:{ to_table: :users}|
