@@ -62,3 +62,9 @@
 -belongs_to :user 
 -belongs_to :item  
 -has_one :order
+
+# commentsテーブル
+|  colum  |   type  |  option  |
+|  text   |   text  |          |
+| user_id | integer |          |
+| item_id | integer |          |
