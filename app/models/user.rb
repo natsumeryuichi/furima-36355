@@ -15,4 +15,8 @@ class User < ApplicationRecord
          has_many :items
          has_many :purchase_managements
          has_many :comments
+         has_many :relationships
+         has_many :followings, through: :relationships, source: :follow
+         has_many :reverse_of_relationships, class_name: 'relationship', foreign_key: 'follow_id'
+         has_many :followers, through: :reverse_of_relationships, source: :user
 end
