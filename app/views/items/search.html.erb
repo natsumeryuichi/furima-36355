@@ -4,7 +4,7 @@
     <div class="search-field">
       <%= f.label :title, '商品名' %>
       <br>
-      <%= f.text_field :title, placeholder: '商品名' %>
+      <%= f.text_field :title, placeholder: '商品名', value: params[:q]&.dig(:title) %>
     </div>
     <div class="search-field">
       <%= f.label :category_id_eq, 'カテゴリ' %>
