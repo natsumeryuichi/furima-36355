@@ -9,7 +9,7 @@
     <div class="search-field">
       <%= f.label :category_id_eq, 'カテゴリ' %>
       <br>
-      <%= f.collection_select(:category_id_eq, Category.all, :id, :name, {include_blank: "--"}) %>
+      <%= f.collection_check_boxes(:category_id_eq, Category.all, :id, :name, {include_blank: "--"}) %>
     </div>
     <div class="search-field">
       <%= f.label :price_gteq, '価格'%>
