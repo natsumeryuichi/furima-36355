@@ -3,10 +3,12 @@
   <div class='search-bar-contents'>
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
     <div class="search-form">
-      <input class='input-box' placeholder='キーワードから探す'>
+     <%= search_form_for Item.ransack(params[:q]), url: search_items_path, html: {class: 'input-box'} do |f| %>
+      <%= f.text_field :title, placeholder:'キーワードから探す' %>
       <button class="search-button">
         <%= link_to image_tag("search.png", class:"search-icon"), search_items_path %>
       </button>
+      <% end %>
     </div>
   </div>
   <div class='nav'>
