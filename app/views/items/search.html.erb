@@ -1,6 +1,4 @@
-<%= render "shared/header" %>
-<h3>検索ページ</h3>
-<h3><%= link_to 'トップページへ戻る', root_path%></h3>
+<h2>検索ページ</h2>
 <div class='item-contents' id="detailed-search-result-wrapper">
   <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
     <div class="search-field">
@@ -11,7 +9,14 @@
     <div class="search-field">
       <%= f.label :category_id_eq, 'カテゴリ' %>
       <br>
-      <%= f.collection_select(:category_id_eq, Category.all, :id, :name, {include_blank: "---"}) %>
+      <%= f.collection_select(:category_id_eq, Category.all, :id, :name, {include_blank: "--"}) %>
+    </div>
+    <div class="search-field">
+      <%= f.label :price_gteq, '価格'%>
+      <br>
+      <%= f.number_field :price_gteq %> 円以上
+      <br>
+      <%= f.number_field :price_lteq %> 円以下
     </div>
     <%= f.submit '検索' %>
   <% end %>
@@ -24,6 +29,7 @@
           <%= link_to '詳細', item_path(item.id)%>
         </div>
       </li>
+      <h3><%= link_to 'トップページへ戻る', root_path%></h3>
     <% end %>
   </ul>
 </div>
