@@ -1,15 +1,17 @@
+<div class="title">
 <h2>検索ページ</h2>
-<div class='item-contents' id="detailed-search-result-wrapper">
+</div>
+  <div class='item-contents' id="detailed-search-result-wrapper">
   <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
     <div class="search-field">
-      <%= f.label :title, '商品名' %>
+      <%= f.label :title, '商品名' , class: "item-title"%>
       <br>
       <%= f.text_field :title, placeholder: '商品名', value: params[:q]&.dig(:title) %>
     </div>
     <div class="search-field">
       <%= f.label :category_id_eq, 'カテゴリ' %>
       <br>
-      <%= f.collection_check_boxes(:category_id_eq, Category.all, :id, :name, {include_blank: "--"}) %>
+       <%= f.collection_check_boxes(:category_id_eq, Category.all, :id, :name, {include_blank: "--"}) %>
     </div>
     <div class="search-field">
       <%= f.label :price_gteq, '価格'%>
@@ -29,7 +31,9 @@
           <%= link_to '詳細', item_path(item.id)%>
         </div>
       </li>
-      <h3><%= link_to 'トップページへ戻る', root_path%></h3>
     <% end %>
   </ul>
+  <div class="move-page">
+  <h3><%= link_to 'トップページへ戻る', root_path%></h3>
+  </div>
 </div>
