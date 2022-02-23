@@ -44,6 +44,11 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def search
+    @q = Item.ransack(params[:q])
+    @items = @q.result
+  end
   
 end
 
