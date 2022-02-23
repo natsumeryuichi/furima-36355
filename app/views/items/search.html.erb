@@ -2,9 +2,9 @@
 <div class='item-contents' id="detailed-search-result-wrapper">
   <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
     <div class="search-field">
-      <%= f.label :title_cont, '商品名' %>
+      <%= f.label :title, '商品名' %>
       <br>
-      <%= f.text_field :title_cont, placeholder: '商品名' %>
+      <%= f.text_field :title, placeholder: '商品名' %>
     </div>
     <div class="search-field">
       <%= f.label :category_id_eq, 'カテゴリ' %>
